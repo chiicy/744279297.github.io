@@ -9,9 +9,9 @@ function Container(id) {
     DomUtil.withNode(this.buttons[0]).addClass('hover')
 
     DomUtil.withNode(this.container).eventProxy(this.buttons, 'click', function (ele) {
-        var index = this.buttons.indexOf(ele)
+        var index = self.buttons.indexOf(ele)
         self.scrollIndex(index)
-        this.buttons.forEach(function (button) {
+        self.buttons.forEach(function (button) {
             DomUtil.withNode(button).removeClass('hover')
         })
         DomUtil.withNode(ele).addClass('hover')
