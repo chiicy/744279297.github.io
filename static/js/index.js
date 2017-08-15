@@ -10,14 +10,18 @@ function Container(id) {
 
     DomUtil.withNode(this.container).eventProxy(this.buttons, 'click', function (ele) {
         var index = self.buttons.indexOf(ele)
+        self.setClickedIndex(index)
         self.scrollIndex(index)
-        self.buttons.forEach(function (button) {
-            DomUtil.withNode(button).removeClass('hover')
-        })
-        DomUtil.withNode(ele).addClass('hover')
+
     })
 }
 Container.prototype = {
+    setClickedIndex: function (index) {
+        this.clickedIndex = index
+    },
+    getClickedIndex: function () {
+        return this.clickedIndex
+    },
     getCurrentIndex: function () {
         return Array.from(this.items).indexOf(this.getCurrentItem())
     },
@@ -38,15 +42,16 @@ Container.prototype = {
         }
     },
     scrollIndex: function (index) {
+        var self = this
         var steps = index - this.getCurrentIndex()
         if (steps > 0) {
             while (steps > 0) {
-                this.scrollToNext()
+                self.scrollToNext()
                 steps--
             }
         } else {
             while (steps < 0) {
-                this.scrollToPrevious()
+                self.scrollToPrevious()
                 steps++
             }
         }
@@ -56,6 +61,7 @@ Container.prototype = {
         var nextId = currentIndex + 1 >= this.items.length ? currentIndex : currentIndex + 1
         if (nextId !== currentIndex) {
             this.scrollStep(nextId)
+            this.buttonMove(nextId)
         }
 
     },
@@ -64,14 +70,21 @@ Container.prototype = {
         var preId = currentIndex <= 0 ? 0 : currentIndex - 1
         if (preId !== currentIndex) {
             this.scrollStep(preId)
+            this.buttonMove(preId)
         }
     },
     buttonMove: function (index) {
-
-        this.buttons.forEach(function (button) {
-            DomUtil.withNode(button).removeClass('hover')
-        })
-        DomUtil.withNode(ele).addClass('hover')
+        if (index === this.getClickedIndex()) {
+            this.buttons.forEach(function (button) {
+                DomUtil.withNode(button).removeClass('hover')
+            })
+            DomUtil.withNode(this.buttons[index]).addClass('hoverNoText')
+        } else {
+            this.buttons.forEach(function (button) {
+                DomUtil.withNode(button).removeClass('hover')
+            })
+            DomUtil.withNode(this.buttons[index]).addClass('hover')
+        }
     }
 }
 

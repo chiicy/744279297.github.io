@@ -1,6 +1,18 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://744279297.github.io/static/font/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://744279297.github.io/static/font/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://744279297.github.io/static/font/MaterialIcons-Regular.woff) format('woff'),
+    url(https://744279297.github.io/static/font/MaterialIcons-Regular.ttf) format('truetype');
+}
 body {
     margin: 0;
     padding: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
 }
 
 .page {
@@ -67,15 +79,23 @@ body {
     text-align: right;
     margin-right: 30px;
     color: #00bfa5;
-    transition: all 1s ease;
+    transition: all 1s linear;
 }
 
-.control ul li:hover, .control ul .hover {
+.control ul li:hover {
     color: white;
 }
 
-.control ul li:hover:after, .control ul .hover:after {
+.control ul .hover {
+    animation: control-tips 2s linear;
+    color: #00bfa5;
+}
 
+.control ul .hoverNoText {
+
+}
+
+.control ul li:hover:after, .control ul .hover:after, .control ul .hoverNoText:after {
     width: 16px;
     height: 16px;
     transform: translateX(15px);
@@ -89,7 +109,7 @@ body {
     background: white;
     border-radius: 50%;
     transition: all .5s ease;
-    transform: translateX(20px);
+    transform: translateX(18px);
 }
 
 .control li + li {
@@ -163,6 +183,19 @@ body {
     animation: github-circle .5s forwards;
 }
 
+.project {
+    background: #19B1E0;
+}
+.project .metro{
+
+}
+.project .title {
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 1px 2px #5CACEE, 2px 4px #AEEEEE;
+    margin-top: 100px;
+}
+
 /*.icon .github-icon path {*/
 /*fill: #ffffff;*/
 /*transition: fill .4s ease;*/
@@ -197,5 +230,17 @@ body {
         stroke-dashoffset: 0;
         stroke-width: 1px;
         stroke: #ffffff
+    }
+}
+
+@keyframes control-tips {
+    0% {
+        color: #00bfa5;
+    }
+    50% {
+        color: #ffffff;
+    }
+    100% {
+        color: #00bfa5;
     }
 }
