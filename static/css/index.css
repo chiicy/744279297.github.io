@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    color: white;
+}
+
+.container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #00bfa5;
+    transition: all 1s ease;
+    color: white;
+}
+
+#profile-img-wrap {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin-top: 170px;
+}
+
+#profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile .profile-name {
+    color: #ffffff;
+    font-weight: normal;
+    text-align: center;
+    font-size: 23px;
+    margin-top: 35px;
+}
+
+.profile .profile-introduction {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pre-container {
+    transform: translateY(-100%);
+
+}
+
+.control {
+    position: fixed;
+    width: 20px;
+    right: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.control ul {
+    position: relative;
+}
+
+.control ul li {
+
+    width: 100px;
+    position: relative;
+    text-align: right;
+    margin-right: 30px;
+    color: #00bfa5;
+    transition: all 1s ease;
+}
+
+.control ul li:hover, .control ul .hover {
+    color: white;
+}
+
+.control ul li:hover:after, .control ul .hover:after {
+
+    width: 16px;
+    height: 16px;
+    transform: translateX(15px);
+}
+
+.control ul li:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    transition: all .5s ease;
+    transform: translateX(20px);
+}
+
+.control li + li {
+    margin-top: 30px;
+}
+
+.next-container {
+    transform: translateY(100%);
+}
+
+#social-list {
+    width: 300px;
+    margin: 35px auto;
+}
+
+.h-list {
+    width: 300px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.h-list div {
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+}
+
+.h-list div + div {
+    margin-left: 20px;
+}
+
+.h-list .icon {
+    position: relative;
+    height: 100%;
+}
+
+.h-list .icon a {
+    width: 70px;
+    height: 70px;
+}
+
+.h-list .icon a svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.container .bottom-tag {
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.circle {
+    fill: transparent;
+    stroke-width: 1px;
+    position: relative;
+    stroke-dasharray: 0 200;
+    stroke-dashoffset: -200;
+    transition: all .4s;
+}
+
+.icon:hover .circle {
+    animation: github-circle .5s forwards;
+}
+
+/*.icon .github-icon path {*/
+/*fill: #ffffff;*/
+/*transition: fill .4s ease;*/
+/*}*/
+
+/*.icon:hover .github-icon path {*/
+/*fill: #8a8a8a*/
+/*}*/
+/*.icon .weibo-icon path {*/
+/*fill: #ffffff;*/
+/*transition: fill .4s ease;*/
+/*}*/
+
+/*.icon:hover .weibo-icon path {*/
+/*fill: #d81e06*/
+/*}*/
+/*.icon .zhihu-icon path {*/
+/*fill: #ffffff;*/
+/*transition: fill .4s ease;*/
+/*}*/
+
+/*.icon:hover .zhihu-icon path {*/
+/*fill: #1296db*/
+/*}*/
+@keyframes github-circle {
+    from {
+        stroke-dasharray: 0 200;
+        stroke-dashoffset: -200;
+    }
+    to {
+        stroke-dasharray: 200;
+        stroke-dashoffset: 0;
+        stroke-width: 1px;
+        stroke: #ffffff
+    }
+}
