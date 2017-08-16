@@ -1,6 +1,7 @@
 /**
  * Created by chizhang on 2017/8/13.
  */
+
 function Container(id) {
     var self = this
     this.container = document.getElementById(id)
@@ -87,11 +88,72 @@ Container.prototype = {
         }
     }
 }
+function beat(animations, selector) {
+    var T = 200, t = 200
+    while (t > 30) {
+        animations.push(new Animator(document.querySelector(selector), t, function (node, p) {
+            var s = this.duration * 10 / T;
+            var ty = -s * p * (2 - p);
+            node.style.transform = 'translateY('
+                + ty + 'px';
+        }).animate())
+        animations.push(new Animator(document.querySelector(selector), t, function (node, p) {
+            var s = this.duration * 10 / T;
+            var ty = s * (p * p - 1);
+            node.style.transform = 'translateY('
+                + ty + 'px';
+        }).animate());
+
+        t *= 0.5
+    }
+}
+function introductionInit() {
+    var page = new Page(document.querySelector('.introduction'))
+    var animations = []
+    animations.push(new Animator(
+        document.querySelector('.profile-name'),
+        500,
+        function (node, p) {
+            node.style.opacity = p
+            node.style.transform = 'translateY(' + (1 - p) * 10 + 'px'
+        }).animate())
+    animations.push(new Animator(
+        document.querySelector('.profile-introduction'),
+        500,
+        function (node, p) {
+            node.style.opacity = p
+            node.style.transform = 'translateY(' + (1 - p) * 10 + 'px'
+        }
+    ).animate())
+    animations.push(new Animator(
+        document.querySelector('.profile-purpose'),
+        500,
+        function (node, p) {
+            node.style.opacity = p
+            node.style.transform = 'translateY(' + (1 - p) * 10 + 'px'
+        }
+    ).animate())
+    animations.push(new Animator(
+        document.querySelector('.h-list'),
+        500,
+        function (node, p) {
+            node.style.opacity = p
+            node.style.transform = 'translateY(' + (1 - p) * 10 + 'px'
+        }
+    ).animate())
+
+
+    beat(animations, '.github')
+    beat(animations, '.weibo')
+    beat(animations, '.zhihu')
+    page.setAnimate(animations)
+}
 
 window.onload = function () {
     var pageScroll = new Task()
     var page = new Container('page')
     DomUtil.withNode(page.container).scrollPage(page.scrollToPrevious.bind(page), page.scrollToNext.bind(page))
+    introductionInit()
     // var animals = Array.from(page.items).map(function () {
     //     return new Animator(2000,function (p) {
     //         console.log(p)

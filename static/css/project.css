@@ -1,0 +1,120 @@
+.project {
+    position: fixed;
+    background: #19B1E0;
+}
+
+.project .project-list {
+    margin-top: 60px;
+    height: 448px;
+    overflow: hidden;
+}
+
+.project .project-list ul {
+    /*transform: translateY(-50%);*/
+}
+
+.project .metro {
+    width: 300px;
+    height: 112px;
+    margin: auto;
+    color: white;
+}
+
+.project .metro .metro-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.project li {
+    position: relative;
+}
+
+.project li:nth-child(n) .metro-content {
+    transform: translateX(-300px);
+}
+
+.project li:nth-child(2n) .metro-content {
+    transform: translateX(300px);
+}
+
+.project li:nth-child(n) .metro-content .icon-bg {
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    left: -150px;
+    background: #1874CD;
+    opacity: .8;
+}
+
+.project li:nth-child(2n) .metro-content .icon-bg {
+    left: 350px;
+}
+
+.project li .metro-content .icon-bg svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.project li:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.project li:nth-child(n):after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    top: 50%;
+    right: 50%;
+    background: white;
+    transform: translateX(-50%);
+}
+
+.project li:nth-child(2n):after {
+    left: 50%;
+    transform: translateY(-150%) translateX(50%);
+}
+
+.metro div h2 {
+    font-size: 20px;
+}
+
+.metro div .line {
+    width: 100%;
+    height: 1px;
+    background: white;
+    margin: 10px 0;
+}
+
+.project .title {
+    text-shadow: 1px 2px #5CACEE, 2px 4px #AEEEEE;
+}
+
+.content {
+    /*display: inline-block;*/
+    position: relative;
+    line-height: 1.5;
+    height: 72px;
+    overflow: hidden;
+}
+
+.content:after {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 40px;
+    background: linear-gradient(to right, transparent, #19B1E0 55%);
+}
