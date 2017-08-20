@@ -1,0 +1,64 @@
+.skill .toolbar {
+    background: #00bcd4;
+    height: 200px;
+}
+
+.skill .toolbar .title h2 {
+    margin-top: 30px;
+}
+
+.skill .toolbar .toggle {
+    width: 550px;
+    margin: 150px auto;
+    font-size: 20px;
+}
+
+.mac {
+    position: relative;
+    width: 50%;
+    height: 350px;
+    background: #21252b;
+    margin: 50px auto;
+    padding-top: 30px;
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .6);
+    border-radius: 5px;
+}
+
+#editor {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.mac:after {
+    content: " ";
+    position: absolute;
+    border-radius: 50%;
+    background: #fc625d;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    left: 20px;
+    margin-top: 13px;
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+    z-index: 3;
+}
+
+.tags-wrap .tags {
+    margin-top: 100px;
+}
+
+.tags a {
+    background: #00bcd4;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 8px 25px;
+    border-radius: 3px;
+}
+.tags a +a{
+    margin-right: 30px;
+    margin-top: 55px;
+}
