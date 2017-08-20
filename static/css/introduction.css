@@ -1,11 +1,11 @@
-.container {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background: #ffffff;
-    transition: all 1s ease;
-    color: white;
-}
+/*.container {*/
+    /*!*position: fixed;*!*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*background: #ffffff;*/
+    /*transition: all 1s ease;*/
+    /*color: white;*/
+/*}*/
 
 .introduction {
     background: #f6f8fa;

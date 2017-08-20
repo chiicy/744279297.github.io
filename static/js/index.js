@@ -2,92 +2,6 @@
  * Created by chizhang on 2017/8/13.
  */
 
-function Container(id) {
-    var self = this
-    this.container = document.getElementById(id)
-    this.items = this.container.querySelectorAll('.container')
-    this.buttons = Array.from(this.container.querySelectorAll('.control ul li'))
-    DomUtil.withNode(this.buttons[0]).addClass('hover')
-
-    DomUtil.withNode(this.container).eventProxy(this.buttons, 'click', function (ele) {
-        var index = self.buttons.indexOf(ele)
-        self.setClickedIndex(index)
-        self.scrollIndex(index)
-
-    })
-}
-Container.prototype = {
-    setClickedIndex: function (index) {
-        this.clickedIndex = index
-    },
-    getClickedIndex: function () {
-        return this.clickedIndex
-    },
-    getCurrentIndex: function () {
-        return Array.from(this.items).indexOf(this.getCurrentItem())
-    },
-    getCurrentItem: function () {
-        return this.container.querySelector('.current-container')
-    },
-    scrollStep: function (index) {
-        var ever = this.getCurrentIndex()
-        var everdom = DomUtil.withNode(this.getCurrentItem()).removeClass('current-container')
-        var nowDom = DomUtil.withNode(this.items[index]).addClass('current-container')
-        var now = this.getCurrentIndex()
-        if (now > ever) {
-            everdom.addClass('pre-container')
-            nowDom.removeClass('next-container')
-        } else {
-            everdom.addClass('next-container')
-            nowDom.removeClass('pre-container')
-        }
-    },
-    scrollIndex: function (index) {
-        var self = this
-        var steps = index - this.getCurrentIndex()
-        if (steps > 0) {
-            while (steps > 0) {
-                self.scrollToNext()
-                steps--
-            }
-        } else {
-            while (steps < 0) {
-                self.scrollToPrevious()
-                steps++
-            }
-        }
-    },
-    scrollToNext: function () {
-        var currentIndex = this.getCurrentIndex()
-        var nextId = currentIndex + 1 >= this.items.length ? currentIndex : currentIndex + 1
-        if (nextId !== currentIndex) {
-            this.scrollStep(nextId)
-            this.buttonMove(nextId)
-        }
-
-    },
-    scrollToPrevious: function () {
-        var currentIndex = this.getCurrentIndex()
-        var preId = currentIndex <= 0 ? 0 : currentIndex - 1
-        if (preId !== currentIndex) {
-            this.scrollStep(preId)
-            this.buttonMove(preId)
-        }
-    },
-    buttonMove: function (index) {
-        if (index === this.getClickedIndex()) {
-            this.buttons.forEach(function (button) {
-                DomUtil.withNode(button).removeClass('hover')
-            })
-            DomUtil.withNode(this.buttons[index]).addClass('hoverNoText')
-        } else {
-            this.buttons.forEach(function (button) {
-                DomUtil.withNode(button).removeClass('hover')
-            })
-            DomUtil.withNode(this.buttons[index]).addClass('hover')
-        }
-    }
-}
 function beat(animations, selector) {
     var T = 200, t = 200
     while (t > 30) {
@@ -107,9 +21,9 @@ function beat(animations, selector) {
         t *= 0.5
     }
 }
-function introductionInit() {
-    var page = new Page(document.querySelector('.introduction'))
+function introductionInit(page) {
     var animations = []
+
     animations.push(new Animator(
         document.querySelector('.profile-name'),
         500,
@@ -146,14 +60,64 @@ function introductionInit() {
     beat(animations, '.github')
     beat(animations, '.weibo')
     beat(animations, '.zhihu')
-    page.setAnimate(animations)
-}
+    var animationTasks = new Task()
 
+    animationTasks.add(animations)
+    page.setAnimate(animationTasks)
+    return page
+}
+function projectInit(page) {
+    var animations = []
+    var allTasks = [new Animator(
+        document.querySelector('.project .toolbar'),
+        1000,
+        function (node, p) {
+            node.style.height = (300 - 220 * p) + 'px'
+        }
+    ).animate(),
+        new Animator(
+            document.querySelector('.project .toolbar .title h2'),
+            1000,
+            function (node, p) {
+                node.style.marginTop = (150 - 150 * p) + 'px'
+                node.style.width = (100 - 85 * p) + '%'
+            }
+        ).animate(),
+        new Animator(
+            document.querySelector('.project .toolbar .toggle-wrap .toggle'),
+            1000,
+            function (node, p) {
+                node.style.marginTop = (240 - 200 * p) + 'px'
+            }
+        ).animate(),
+        new Animator(
+            document.querySelector('.card-list'),
+            1000,
+            function (node, p) {
+                node.style.opacity = p
+            }
+        ).animate()]
+
+    var animationTasks = Task.all(allTasks)
+
+    animationTasks.add(animations)
+    page.setAnimate(animationTasks)
+    return page
+}
 window.onload = function () {
+
+    var height = getComputedStyle(document.querySelector('.load')).height
+    //   fullPage(Array.from(document.querySelector('.container')),height)
+    var loadPage = new Page('.load')
+    var introducePage = introductionInit(new Page('.introduction'))
+    var projectPage = projectInit(new Page('.project'))
+    var skillPage = new Page('.skill')
+
+    var container = new Container('page', [loadPage, introducePage, projectPage, skillPage])
+
     var pageScroll = new Task()
-    var page = new Container('page')
-    DomUtil.withNode(page.container).scrollPage(page.scrollToPrevious.bind(page), page.scrollToNext.bind(page))
-    introductionInit()
+    // DomUtil.withNode(container.container).scrollPage(container.scrollToPrevious.bind(container), container.scrollToNext.bind(container))
+    //  introductionInit()
     // var animals = Array.from(page.items).map(function () {
     //     return new Animator(2000,function (p) {
     //         console.log(p)
