@@ -13,18 +13,19 @@ function Page(node) {
 
 Page.prototype = {
 
-    translateUp: function () {
+    translateUp: function (e) {
         DomUtil.withNode(this.page).addClass('pre-container').removeClass('current-container')
-        return this
+        return true
     },
-    translateDown: function () {
+    translateDown: function (e) {
+
         DomUtil.withNode(this.page).addClass('next-container').removeClass('current-container')
-        return this
+        return true
     },
     translateCurrent: function () {
         DomUtil.withNode(this.page).addClass('current-container').removeClass('next-container pre-container')
         this.startAnimate()
-        return this
+        return true
     },
     setAnimate: function (animations) {
         this.animations = animations
@@ -50,30 +51,7 @@ function Container(id, items) {
     this.items = items
     this.currentIndex = 0
     this.buttons = Array.from(this.container.querySelectorAll('.control ul li'))
-    var startTime = 0, endTime = 0
     DomUtil.withNode(this.container).scrollPage(this.scrollToPrevious.bind(this), this.scrollToNext.bind(this))
-
-    // items.forEach(item => item.page.addEventListener('mousewheel', function (node, e) {
-    //     startTime = new Date().getTime()
-    //
-    //     var delta = event.detail || (-event.wheelDelta)
-    //     console.log(startTime)
-    //     console.log(endTime)
-    //     if ((endTime - startTime) < -1000) {
-    //         console.log(delta)
-    //         if (delta > 2) {
-    //             self.scrollToNext()
-    //         }
-    //         if (delta < -2) {
-    //             self.scrollToPrevious()
-    //         }
-    //         endTime = new Date().getTime();
-    //
-    //     } else {
-    //         e.preventDefault()
-    //     }
-    //
-    // }, false))
 
 }
 Container.prototype = {
@@ -124,20 +102,20 @@ Container.prototype = {
             }
         }
     },
-    scrollToNext: function () {
+    scrollToNext: function (e) {
         var currentIndex = this.getCurrentIndex()
-        if (currentIndex < this.items.length-1) {
-            this.getCurrentItem().translateUp()
-            this.getNextItem().translateCurrent()
-            this.currentIndex = this.currentIndex + 1
+        if (currentIndex < this.items.length - 1) {
+            this.getCurrentItem().translateUp(e)
+            && this.getNextItem().translateCurrent(e)
+            && (this.currentIndex = this.currentIndex + 1)
         }
     },
-    scrollToPrevious: function () {
+    scrollToPrevious: function (e) {
         var currentIndex = this.getCurrentIndex()
         if (currentIndex >= 1) {
-            this.getCurrentItem().translateDown()
-            this.getPreItem().translateCurrent()
-            this.currentIndex = this.currentIndex - 1
+            this.getCurrentItem().translateDown(e)
+            && this.getPreItem().translateCurrent(e)
+            && (this.currentIndex = this.currentIndex - 1)
         }
 
 

@@ -67,6 +67,7 @@ function introductionInit(page) {
     return page
 }
 function projectInit(page) {
+
     var animations = []
     var allTasks = [new Animator(
         document.querySelector('.project .toolbar'),
@@ -89,19 +90,46 @@ function projectInit(page) {
             function (node, p) {
                 node.style.marginTop = (240 - 200 * p) + 'px'
             }
-        ).animate(),
-        new Animator(
-            document.querySelector('.card-list'),
-            1000,
-            function (node, p) {
-                node.style.opacity = p
-            }
         ).animate()]
 
-    var animationTasks = Task.all(allTasks)
+    var a = 0
 
-    animationTasks.add(animations)
-    page.setAnimate(animationTasks)
+    function Project(animations) {
+        this.toolbar = true
+        this.toolbarAnimations = animations
+        var cardList = document.querySelector('.card-list-wrap')
+        var a = 0
+        var self = this
+        cardList.addEventListener('mousewheel', function (e) {
+            var delta = event.detail || (-event.wheelDelta)
+            a -= delta
+            if (a >= -290 && a <= 0 && !self.toolbar) {
+                e.stopPropagation()
+                cardList.style.transform = 'translateY(' + a + 'px)'
+
+            } else {
+                if (a < -290) a = -290
+                if (a > 0) a = 0
+            }
+
+        })
+        cardList.style.transform = 'translateY(' + a + 'px)'
+    }
+
+    Project.prototype = page
+    page = new Project(allTasks)
+    page.translateUp = function (e) {
+        if (this.toolbar) {
+            Task.all(this.toolbarAnimations)
+            this.toolbar = false
+        } else {
+            DomUtil.withNode(this.page).addClass('next-container').removeClass('current-container')
+            return true
+        }
+
+    }
+
+
     return page
 }
 window.onload = function () {
@@ -116,15 +144,5 @@ window.onload = function () {
     var container = new Container('page', [loadPage, introducePage, projectPage, skillPage])
 
     var pageScroll = new Task()
-    // DomUtil.withNode(container.container).scrollPage(container.scrollToPrevious.bind(container), container.scrollToNext.bind(container))
-    //  introductionInit()
-    // var animals = Array.from(page.items).map(function () {
-    //     return new Animator(2000,function (p) {
-    //         console.log(p)
-    //         if(p===1){
-    //             page.scrollToNext()
-    //         }
-    //     }).animate()
-    // })
-    // pageScroll.add(...animals).run()()
+
 }
