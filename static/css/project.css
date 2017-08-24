@@ -24,48 +24,89 @@
     overflow-y: hidden;
 }
 
-.card {
+.card-wrap {
+    position: relative;
     width: 400px;
-    height: 200px;
-    background: #ffffff;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, .3);
+    height: 300px;
     float: left;
 }
 
-.card:nth-child(n) {
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background: #ffffff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .3);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-52%) translateX(-50%);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .3);
+    transition: all .5s linear;
+}
+
+.card-wrap:nth-child(n) {
     margin-top: 50px;
 }
 
-.card:nth-child(2n) {
+.card-wrap:nth-child(2n) {
     margin-left: 50px;
 }
 
 .card .card-title {
-    height: 35px;
+    height: 65px;
     width: 100%;
-    background: #f5f5f5;;
-    line-height: 35px;
+    line-height: 65px;
+    overflow: hidden;
     color: #434a54;
     text-align: left;
     font-size: 20px;
 
 }
 
-.card .card-title p {
-    position: relative;
-    margin-left: 35px;
+.card:after {
+    content: "more  >>";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 65px;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    color:#434a54;
+    background: linear-gradient(to bottom, transparent, #ffffff 60%)
 }
 
-.card .card-title p:before {
+.card .card-title p {
+    position: relative;
+    margin-left: 36px;
+}
+
+/*.card .card-title p:before {*/
+/*content: '';*/
+/*position: absolute;*/
+/*left: -26px;*/
+/*top: 50%;*/
+/*height: 10px;*/
+/*width: 10px;*/
+/*border-radius: 50%;*/
+/*background: #03a9f4;*/
+/*transform: translateY(-50%);*/
+/*}*/
+.card .card-title p:after {
     content: '';
     position: absolute;
-    left: -25px;
-    top: 50%;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    background: #03a9f4;
-    transform: translateY(-50%);
+    left: -18px;
+    bottom: 0;
+    margin-right: 25px;
+    height: 1px;
+    width: 100%;
+    background: #BDBDBD;
+    opacity: .7;
 }
 
 /*old*/
@@ -165,24 +206,25 @@
 }
 
 .project .title {
+
     text-shadow: 1px 2px #5CACEE, 2px 4px #AEEEEE;
 }
 
 .content {
     /*display: inline-block;*/
     position: relative;
-    line-height: 1.35;
-    height: 135px;
+    line-height: 1.5;
+    height: 195px;
     overflow: hidden;
     color: #434a54;
-    padding: 15px 10px;
+    padding: 20px 20px;
 }
 
-.content:after {
-    content: "...";
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    padding-left: 40px;
-    background: linear-gradient(to right, transparent, #f5f5f5 55%);
-}
+/*.content:after {*/
+/*content: "...";*/
+/*position: absolute;*/
+/*bottom: 10px;*/
+/*right: 10px;*/
+/*padding-left: 40px;*/
+/*background: linear-gradient(to right, transparent, #f5f5f5 55%);*/
+/*}*/

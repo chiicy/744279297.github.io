@@ -1,6 +1,3 @@
-/**
- * Created by chizhang on 2017/8/16.
- */
 function Page(node) {
     if (typeof node === 'string') {
         this.page = document.querySelector(node)
@@ -10,7 +7,6 @@ function Page(node) {
     var self = this
 
 }
-
 Page.prototype = {
 
     translateUp: function (e) {
@@ -18,7 +14,6 @@ Page.prototype = {
         return true
     },
     translateDown: function (e) {
-
         DomUtil.withNode(this.page).addClass('next-container').removeClass('current-container')
         return true
     },
@@ -32,6 +27,7 @@ Page.prototype = {
         return this
     },
     startAnimate: function () {
+        console.log('ani')
         if (this.animations) this.animations.run()()
         return this
     },
@@ -132,5 +128,69 @@ Container.prototype = {
             })
             DomUtil.withNode(this.buttons[index]).addClass('hover')
         }
+    }
+}
+
+function Card(node, tag, currentW, currentY) {
+    this.node = node
+    this.currentAppear = true
+    this.willAppear = true
+    this.tag = tag
+    this.currentX = currentW
+    this.currentY = currentY
+    this.willX = currentW
+    this.willY = currentY
+    this.removed = false
+}
+Card.prototype = {
+    move: function (back) {
+        var self = this
+        if (self.willX === self.currentX && self.willY === self.currentY)return
+        new Animator(this.node, 500, function (node, p) {
+            if (back) p = p - 1
+            node.style.transform = 'translateX('
+                + p * 450 * (self.willX - self.currentX)
+                + 'px)'
+                + 'translateY('
+                + p * 250 * (self.willY - self.currentY)
+                + 'px)'
+        }).animate()(function () {
+            self.currentX = self.willX
+            self.currentY = self.willY
+            self.removed = true
+        })
+
+    },
+    disappear: function () {
+        var self = this
+        new Animator(this.node, 500, function (node, p) {
+            node.querySelector('.card').style.width = (1 - p) * 100 + '%'
+            node.querySelector('.card').style.height = (1 - p) * 100 + '%'
+            node.style.opacity = 1 - p
+            node.style.fontSize = (16 * (1 - p)) + 'px'
+        }).animate()(function () {
+            self.currentAppear = false
+        })
+    },
+    appear: function () {
+        var self = this
+        new Animator(this.node, 500, function (node, p) {
+            node.querySelector('.card').style.width = p * 100 + '%'
+            node.querySelector('.card').style.height = p * 100 + '%'
+            node.style.opacity = p
+            node.style.fontSize = (16 * p) + 'px'
+        }).animate()(function () {
+            self.currentAppear = true
+        })
+    },
+    resort: function () {
+        this.move()
+        if (this.willAppear && this.currentAppear) return
+        if (!this.currentAppear && this.willAppear) this.appear()
+        if (this.currentAppear && !this.willAppear) this.disappear()
+    },
+    back: function () {
+        if (!this.currentAppear && this.willAppear) this.appear()
+        this.move(true)
     }
 }
