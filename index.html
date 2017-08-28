@@ -24,7 +24,12 @@
         </div>
     </div>
     <script>
-        document.querySelector('.load').style.opacity = 1
+        var i = 0
+        var id = setInterval(function () {
+            i += 0.1
+            document.querySelector('.load').style.opacity = i
+            if (i === 1) clearInterval(id)
+        }, 100)
     </script>
     <div class="container introduction next-container">
         <div class="introduction-bg"></div>
