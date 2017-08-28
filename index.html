@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="page">
-    <div class="container current-container load ">
+    <div class="container current-container load" style="opacity: 0; transition:all 1s ease ">
         <div class="wrap">
             <div class="mouth up"></div>
             <div class="mouth down"></div>
@@ -22,8 +22,10 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-
     </div>
+    <script>
+        document.querySelector('.load').style.opacity = 1
+    </script>
     <div class="container introduction next-container">
         <div class="introduction-bg"></div>
         <div id="profile-img-wrap">
@@ -336,26 +338,26 @@
         </div>
     </div>
     <!--<div class="control">-->
-        <!--<ul>-->
-            <!--<li>-->
-                <!--&lt;!&ndash;introduction&ndash;&gt;&ensp;-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--&lt;!&ndash;project&ndash;&gt;&ensp;-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--&lt;!&ndash;skill&ndash;&gt;&ensp;-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--&lt;!&ndash;education&ndash;&gt;&ensp;-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--&lt;!&ndash;company&ndash;&gt;&ensp;-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--&lt;!&ndash;connect&ndash;&gt;&ensp;-->
-            <!--</li>-->
-        <!--</ul>-->
+    <!--<ul>-->
+    <!--<li>-->
+    <!--&lt;!&ndash;introduction&ndash;&gt;&ensp;-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--&lt;!&ndash;project&ndash;&gt;&ensp;-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--&lt;!&ndash;skill&ndash;&gt;&ensp;-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--&lt;!&ndash;education&ndash;&gt;&ensp;-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--&lt;!&ndash;company&ndash;&gt;&ensp;-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--&lt;!&ndash;connect&ndash;&gt;&ensp;-->
+    <!--</li>-->
+    <!--</ul>-->
     <!--</div>-->
 </div>
 <pre id='JavaScriptCode' style="display: none;position: absolute;">
