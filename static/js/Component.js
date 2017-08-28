@@ -152,7 +152,7 @@ Card.prototype = {
                 + p * 450 * (self.willX - self.currentX)
                 + 'px)'
                 + 'translateY('
-                + p * 250 * (self.willY - self.currentY)
+                + p * 350 * (self.willY - self.currentY)
                 + 'px)'
         }).animate()(function () {
             self.currentX = self.willX
@@ -192,5 +192,29 @@ Card.prototype = {
     back: function () {
         if (!this.currentAppear && this.willAppear) this.appear()
         this.move(true)
+    }
+}
+
+function Tag(node) {
+    this.node = node
+    this.node.style.fontSize = (40 - 20) * Math.random() + 20 + 'px'
+    this.height = this.node.offsetTop
+}
+Tag.prototype = {
+    animation: function () {
+        this.node.style.opacity = 1
+        var self = this
+        new Animator(this.node, 500, function (node, p) {
+            if (node.style.opacity !== 1) {
+                node.style.opacity = 1
+            }
+
+            node.style.transform = 'translateY(' + (-self.height * (1 - p)) + 'px)'
+        }).animate()()
+
+    },
+    returnStart: function () {
+        this.node.style.opacity = 0
+        this.node.style.transform = 'translateY(' + (-this.height) + 'px)'
     }
 }

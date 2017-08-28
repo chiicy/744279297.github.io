@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="./static/css/introduction.css">
     <link rel="stylesheet" href="./static/css/project.css">
     <link rel="stylesheet" href="./static/css/skill.css">
-    <script type="text/javascript" src="https://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js?"></script>
-
+    <link rel="stylesheet" href="./static/css/work.css">
 </head>
 <body>
 <div id="page">
@@ -113,15 +112,14 @@
                     <div class="card-wrap my">
                         <div class="card my">
                             <div class="card-title">
-                                <p>个人简历</p>
+                                <p>resume</p>
                             </div>
                             <p class="content">
-                                个人简历项目，使用纯原生JavaScript实现，除了引入字体，没有使用其他包。
-                                在项目里面写了Dom.js、Animator.js、Task.js三个小工具来简化dom操作、
-                                抽象Js动画实现、控制异步队列。Js动画事实上也是异步任务的一种，动画的
-                                组合可以看成是task的组合，通过Animator.js和Task.js的组合使用，可以
-                                使动画更加简单可控。在这个小项目中，我通过这两个小工具实现了动画的暂停
-                                和继续。
+                                个人简历项目，使用纯原生JavaScript实现，除了引入字体和代码高亮，
+                                没有使用其他库。在项目里面写了Dom.js、Animator.js、Task.js三个
+                                小工具来简化dom操作、抽象Js动画实现、控制异步队列。Js动画事实上也
+                                是异步任务的一种，动画的组合可以看成是task的组合，通过Animator.js
+                                和Task.js的组合使用，可以使动画更加简单可控
                             </p>
                         </div>
                     </div>
@@ -213,7 +211,7 @@
                 <h2>语言技能</h2>
             </div>
             <div class="toggle-wrap">
-                <div class="toggle">
+                <div class="toggle toggle-skill">
                     <input name="skill" type="radio" checked="checked" id="JavaScript">
                     <label for="JavaScript">JavaScript</label>
                     <input name="skill" type="radio" id="React">
@@ -227,6 +225,14 @@
                     <input name="skill" type="radio" id="Android">
                     <label for="Android">Android</label>
                 </div>
+                <div class="toggle toggle-tag">
+                    <input name="skill-tag" type="radio" checked="checked" id="all-tag">
+                    <label for="all-tag">All</label>
+                    <input name="skill-tag" type="radio" id="front">
+                    <label for="front">前端</label>
+                    <input name="skill-tag" type="radio" id="back">
+                    <label for="back">后端</label>
+                </div>
             </div>
         </div>
         <div class="mac-wrap">
@@ -235,26 +241,90 @@
                 </div>
             </div>
         </div>
-        <div class="tags-wrap" style="display: none">
+        <div class="tags-wrap" style="">
             <div class="tags">
-                <a>JavaScript</a>
-                <a>jQuery</a>
-                <a>React</a>
-                <a>Redux</a>
-                <a>Dva</a>
-                <a>Webpack</a>
-                <a>Css</a>
-                <a>Bootstrap</a>
-                <a>Less</a>
-                <a>Scss/Sass</a>
-                <a>Go</a>
-                <a>Node.js</a>
-                <a>Express</a>
-                <a>Koa</a>
-                <a>Go</a>
-                <a>Java</a>
-                <a>Android</a>
+                <a class="front">JavaScript</a>
+                <a class="front">Bootstrap</a>
+                <a class="front">Css</a>
+                <a class="back">Express</a>
+                <a class="back">Koa</a>
+                <a class="front">Webpack</a>
+                <a class="front">React</a>
+                <a class="back">SSH</a>
+                <a class="front">Redux</a>
+                <a class="front">Dva</a>
+                <a class="back">Go</a>
+                <a class="front">Redux-saga</a>
+                <a class="front">Less</a>
+                <a class="back">Node.js</a>
+                <a class="front">Scss/Sass</a>
+                <a class="front">jQuery</a>
+                <a class="back">SSM</a>
+                <a class="front">Html</a>
+                <a class="back">Java</a>
+                <a class="back">Android</a>
             </div>
+        </div>
+    </div>
+    <div class="container  work next-container">
+        <div class="toolbar">
+            <div class="title">
+                <h2>工作经历</h2>
+            </div>
+        </div>
+        <div class="work-content">
+
+            <div class="metro">
+                <p>2016.3 ~ 2016.6</p>
+                <p>汇鑫融智|Android</p>
+                <div class="line"></div>
+            </div>
+            <div class="metro">
+                <p>2016.6</p>
+                <p>离职/毕设</p>
+                <div class="line"></div>
+            </div>
+            <div class="metro">
+                <p>2016.7 ~ 2017.5</p>
+                <p>亚寰|Android/Java</p>
+                <div class="line"></div>
+            </div>
+            <div class="metro">
+                <p>2017.5 ~ 2017.8</p>
+                <p>散心、旅游、学习</p>
+                <div class="line"></div>
+            </div>
+            <div class="metro">
+                <p>now</p>
+                <p>开始求职</p>
+                <div class="line"></div>
+            </div>
+            <div class="start">
+                <div class="icon">
+                    <svg data-v-042faac3="" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <circle data-v-042faac3="" cy="35" cx="35" r="30" class="circle"></circle>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                        <path d="M10 26.36v8L24 42l14-7.64v-8L24 34l-14-7.64zM24 6L2 18l22 12 18-9.82V34h4V18L24 6z"
+                              fill="#009688"/>
+                    </svg>
+                </div>
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                        <path d="M10 26.36v8L24 42l14-7.64v-8L24 34l-14-7.64zM24 6L2 18l22 12 18-9.82V34h4V18L24 6z"
+                              fill="#f5f5f5"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="end">
+                <div class="icon">
+                    <svg data-v-042faac3="" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <circle data-v-042faac3="" cy="35" cx="35" r="30" class="circle"></circle>
+                    </svg>
+                    <div>Now</div>
+                </div>
+            </div>
+            <!--<div class="line"></div>-->
         </div>
     </div>
     <div class="control">
@@ -377,10 +447,10 @@
 <script src="./static/js/index.js"></script>
 
 <script type="text/javascript">
-//    $youziku.load("body", "e7dc5ca190ee4648aad32717eec428f8", "Microsoft_YaHei");
-//    /*$youziku.load("#id1,.class1,h1", "e7dc5ca190ee4648aad32717eec428f8", "Microsoft_YaHei");*/
-//    /*．．．*/
-//    $youziku.draw();
+    //    $youziku.load("body", "e7dc5ca190ee4648aad32717eec428f8", "Microsoft_YaHei");
+    //    /*$youziku.load("#id1,.class1,h1", "e7dc5ca190ee4648aad32717eec428f8", "Microsoft_YaHei");*/
+    //    /*．．．*/
+    //    $youziku.draw();
 </script>
 </body>
 </html>

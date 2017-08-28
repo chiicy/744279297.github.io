@@ -1,3 +1,7 @@
+.skill {
+    background: #f5f5f5;
+}
+
 .skill .toolbar {
     background: #00bcd4;
     height: 200px;
@@ -18,7 +22,7 @@
     width: 50%;
     height: 350px;
     background: #21252b;
-    margin: 50px auto;
+    margin: auto;
     padding-top: 30px;
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .6);
     border-radius: 5px;
@@ -31,6 +35,11 @@
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.mac-wrap {
+    height: 100%;
+    padding: 50px;
 }
 
 .mac:after {
@@ -47,18 +56,79 @@
     z-index: 3;
 }
 
-.tags-wrap .tags {
-    margin-top: 100px;
+.tags-wrap {
+    height: 100%;
+    background: #f5f5f5;
+    position: absolute;
+    margin-top: -50px;
+}
+
+.tags {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+
 }
 
 .tags a {
-    background: #00bcd4;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 32px;
     padding: 8px 25px;
-    border-radius: 3px;
+    color: #434A54;
+    cursor: pointer;
+    display: inline-block;
+    margin: 6px 2px;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 300;
+    text-shadow: 0 1px 6px #ddd;
+    opacity: 0;
+    transition: color 1s ease;
+    /*animation: tags-animation 1s linear infinite*/
 }
-.tags a +a{
-    margin-right: 30px;
-    margin-top: 55px;
+
+.tags-all .back {
+    animation: 3s tags-animation 1.5s linear infinite;
 }
+
+.tags-front .back {
+    color: #e2e4e7;
+}
+
+.tags-back .front {
+    color: #e2e4e7;
+}
+
+.tags-all .front {
+    animation: tags-animation 3s linear infinite;
+}
+
+@keyframes tags-animation {
+    0% {
+        color: #434A54;
+    }
+
+    50% {
+        color: #e2e4e7;
+    }
+
+    100% {
+        color: #434A54;
+    }
+}
+
+/*.tags a:nth-child(n-3) {*/
+/*margin-right: 30px;*/
+/*margin-top: 15px;*/
+/*}*/
+
+/*.tags a:nth-child(n+3) {*/
+/*margin-right: 80px;*/
+/*margin-top: 15px;*/
+/*}*/
+
+/*.tags a:nth-child(n+6) {*/
+/*margin-right: 80px;*/
+/*margin-top: 15px;*/
+/*}*/
