@@ -18,26 +18,39 @@
 }
 
 /*.work .work-content .line {*/
-    /*height: 80%;*/
-    /*width: 2px;*/
-    /*margin: 30px auto;*/
-    /*padding-top: 115px;*/
-    /*background: #009688;*/
+/*height: 80%;*/
+/*width: 2px;*/
+/*margin: 30px auto;*/
+/*padding-top: 115px;*/
+/*background: #009688;*/
 /*}*/
 .work .work-content .metro .line {
     position: absolute;
-    height: 60px;
+    height: 0;
     width: 2px;
     top: 50%;
     right: -101px;
     background: #009688;
-    transform: translateY(5px)
+    transform: translateY(5px);
 }
+
 .work .work-content .metro:nth-child(2n) .line {
-
     left: -101px;
-
 }
+
+.work .work-content .start .line {
+    height: 0;
+    width: 2px;
+    margin: auto;
+    background: #009688;
+    transition: 1s height 2s linear;
+    transform: translateY(43px);
+}
+
+.work .work-content-animation .start .line {
+    height: 60px;
+}
+
 .work-content .metro {
     position: absolute;
     width: 230px;
@@ -45,6 +58,7 @@
     background: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     color: #434a54;
+    opacity: 0;
 }
 
 .work-content .metro p {
@@ -62,6 +76,16 @@
 .work-content .metro:nth-child(1) {
     transform: translateX(-330px);
     margin-top: 70px;
+    transition: opacity 1s 3s linear;
+}
+
+.work-content-animation .metro:nth-child(1) {
+    opacity: 1;
+}
+
+.work-content-animation .metro:nth-child(1) .line {
+    height: 60px;
+    transition: height 1s 3s linear;
 }
 
 .work-content .metro:nth-child(1n):after {
@@ -106,68 +130,127 @@
 .work-content .metro:nth-child(2) {
     transform: translateX(100px);
     margin-top: 140px;
+    transition: opacity 1s 4s linear;
+}
+
+.work-content-animation .metro:nth-child(2) {
+    opacity: 1;
+}
+
+.work-content-animation .metro:nth-child(2) .line {
+    height: 60px;
+    transition: height 1s 4s linear;
 }
 
 .work-content .metro:nth-child(3) {
     transform: translateX(-330px);
     margin-top: 210px;
+    transition: opacity 1s 5s linear;
+}
+
+.work-content-animation .metro:nth-child(3) {
+    opacity: 1;
+}
+
+.work-content-animation .metro:nth-child(3) .line {
+    height: 60px;
+    transition: height 1s 5s linear;
 }
 
 .work-content .metro:nth-child(4) {
     transform: translateX(100px);
     margin-top: 280px;
+    transition: opacity 1s 6s linear;
+}
+
+.work-content-animation .metro:nth-child(4) {
+    opacity: 1;
+}
+
+.work-content-animation .metro:nth-child(4) .line {
+    height: 60px;
+    transition: height 1s 6s linear;
 }
 
 .work-content .metro:nth-child(5) {
     transform: translateX(-330px);
     margin-top: 350px;
+    transition: opacity 1s 7s linear;
+}
+
+.work-content-animation .metro:nth-child(5) {
+    opacity: 1;
+}
+
+.work-content-animation .metro:nth-child(5) .line {
+    height: 60px;
+    transition: height 1s 7s linear;
 }
 
 .work-content .start {
+    position: relative;
+    width: 48px;
+    height: 48px;
     margin: 30px auto;
 }
 
 .work-content .start .icon {
+    position: absolute;
     width: 48px;
     height: 48px;
     margin: auto;
 }
 
 .work-content .start .icon + .icon {
-    width: 48px;
-    height: 48px;
-    margin: auto;
-    transform: translateY(-48px);
+    bottom: 0;
     overflow: hidden;
-    animation: icon-progress 1s ease infinite;
 }
 
-@keyframes icon-progress {
-    0% {
-        height: 48px;
-    }
-    50% {
-        height: 0;
-    }
-    100% {
-        height: 48px;
-    }
+.work-content-animation .start .icon + .icon {
+    height: 0;
+    transition: 1s height 1s linear;
 }
 
 .work-content .start .icon svg {
     position: absolute;
+    bottom: 0;
+    width: 48px;
+    height: 48px;
 }
 
 .work-content .end {
-    margin: 430px;
+    margin: 420px;
 }
 
 .work-content .end .icon {
-    width: 48px;
-    height: 48px;
+    position: relative;
+    width: 70px;
+    text-align: center;
+    height: 30px;
     margin: auto;
 }
 
-.work-content .end .icon svg {
+.work-content .end .icon .now {
     position: absolute;
+    font-size: 30px;
+    height: 30px;
+    color: #009688;
+    bottom: 0;
+}
+
+.work-content .end .icon .now p {
+    font-size: 30px;
+    height: 30px;
+}
+
+.work-content .end .icon .now + .now {
+    overflow: hidden;
+    color: #f5f5f5;
+    height: 30px;
+    transition: 1s height 8s linear;
+}
+
+.work-content-animation .end .icon .now + .now {
+    font-size: 30px;
+    height: 0;
 }

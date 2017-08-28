@@ -1,9 +1,10 @@
-function Page(node) {
+function Page(node, skip) {
     if (typeof node === 'string') {
         this.page = document.querySelector(node)
     } else {
         this.page = node
     }
+    if (skip !== undefined) this.skip = skip
     var self = this
 
 }
@@ -101,6 +102,7 @@ Container.prototype = {
     scrollToNext: function (e) {
         var currentIndex = this.getCurrentIndex()
         if (currentIndex < this.items.length - 1) {
+            if (this.getNextItem().skip) return
             this.getCurrentItem().translateUp(e)
             && this.getNextItem().translateCurrent(e)
             && (this.currentIndex = this.currentIndex + 1)
@@ -109,6 +111,7 @@ Container.prototype = {
     scrollToPrevious: function (e) {
         var currentIndex = this.getCurrentIndex()
         if (currentIndex >= 1) {
+            if (this.getPreItem().skip) return
             this.getCurrentItem().translateDown(e)
             && this.getPreItem().translateCurrent(e)
             && (this.currentIndex = this.currentIndex - 1)

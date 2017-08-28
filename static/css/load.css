@@ -1,0 +1,112 @@
+.load {
+    background: #cddc39;
+}
+
+.wrap {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.mouth {
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: 0;
+    left: 0;
+    border-radius: 25px;
+    border-right: 25px solid transparent;
+    border-top: 25px solid #fff;
+    border-left: 25px solid #fff;
+    border-bottom: 25px solid #fff;
+
+    transform: translateY(-25px) translateX(-25px);
+}
+
+.up {
+    animation: up-animation 1s infinite;
+}
+
+@keyframes up-animation {
+    0% {
+        transform: rotate(45deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+.down {
+    animation: down-animation 1s infinite;
+}
+
+@keyframes down-animation {
+    0% {
+        transform: rotate(-45deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-45deg);
+    }
+}
+
+.dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    top: 50%;
+    left: 100%;
+    background: #ffffff;
+    transform: translateY(-50%);
+}
+
+.dot:nth-child(3) {
+    animation: dot-left1 .5s linear infinite;
+}
+
+.dot:nth-child(4) {
+    left: 160%;
+    animation: dot-left2 .5s linear infinite;
+}
+
+.dot:nth-child(5) {
+    left: 220%;
+    animation: dot-left3 .5s linear infinite;
+}
+
+@keyframes dot-left3 {
+    from {
+        left: 220%;
+    }
+    to {
+        left: 160%;
+    }
+}
+
+@keyframes dot-left2 {
+    from {
+        left: 160%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes dot-left1 {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 40%;
+    }
+}

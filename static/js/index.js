@@ -17,6 +17,11 @@ function beat(animations, selector) {
         t *= 0.5
     }
 }
+function initLoad(page) {
+    page.prototype.translateUp = null
+    page.prototype.translateCurrent = null
+    page.prototype.translateDown = null
+}
 function introductionInit(page) {
     var animations = []
 
@@ -200,7 +205,7 @@ function skillInit(page) {
         DomUtil.withNode(document)
             .eventProxy(document.querySelectorAll('.skill .toolbar .toggle-wrap .toggle-skill label')
                 , 'click', function (node) {
-                console.log('a')
+                    console.log('a')
                     clearInterval(self.intervalId)
                     var language = node.innerText + 'Code'
                     var text = document.getElementById(language).innerText
@@ -327,14 +332,18 @@ function skillInit(page) {
     var skillPage = new SkillPage()
     return skillPage
 }
+function workInit(page) {
+    page.setAnimate(new Task().add(function (next) {
+        DomUtil.withNode(document.querySelector('.work .work-content')).removeClass('work-content-animation').addClass('work-content-animation')
+    }))
+    return page
+}
 window.onload = function () {
-    var loadPage = new Page('.load')
+    var loadPage = new Page('.load',true)
     var introducePage = introductionInit(new Page('.introduction'))
     var projectPage = projectInit(new Page('.project'))
     var skillPage = skillInit(new Page('.skill'))
-    var workPage = new Page('.work')
-    var container = new Container('page', [loadPage, introducePage, projectPage, skillPage, workPage])
-
-    var pageScroll = new Task()
-
+    var workPage = workInit(new Page('.work'))
+    var container = new Container('page', [loadPage,introducePage, projectPage, skillPage, workPage])
+    container.scrollToNext()
 }
