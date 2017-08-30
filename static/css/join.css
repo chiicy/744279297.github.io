@@ -1,0 +1,27 @@
+.join {
+    background: #22c3aa;
+}
+
+.join div p {
+    text-align: center;
+    margin-top: 270px;
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.join .phone{
+    text-align: center;
+    font-size: 25px;
+    line-height: 50px;
+}
+
+.join .mail {
+    text-align: center;
+    font-size: 25px;
+    line-height: 50px;
+}
+
+.join .mail a {
+    text-decoration: none;
+    color: #ffffff;
+}

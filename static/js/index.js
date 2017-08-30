@@ -17,11 +17,7 @@ function beat(animations, selector) {
         t *= 0.5
     }
 }
-function initLoad(page) {
-    page.prototype.translateUp = null
-    page.prototype.translateCurrent = null
-    page.prototype.translateDown = null
-}
+
 function introductionInit(page) {
     var animations = []
 
@@ -339,11 +335,12 @@ function workInit(page) {
     return page
 }
 window.onload = function () {
-    var loadPage = new Page('.load',true)
+    var loadPage = new Page('.load', true)
     var introducePage = introductionInit(new Page('.introduction'))
     var projectPage = projectInit(new Page('.project'))
     var skillPage = skillInit(new Page('.skill'))
     var workPage = workInit(new Page('.work'))
-    var container = new Container('page', [loadPage,introducePage, projectPage, skillPage, workPage])
+    var joinPage = new Page('.join')
+    var container = new Container('page', [loadPage,introducePage, projectPage, skillPage, workPage,joinPage ])
     container.scrollToNext()
 }
